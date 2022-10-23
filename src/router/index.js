@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-route
 
 import Login from "../views/auth/login"
 import TestPage from "../views/testing"
+import FlightList from "../views/flight/list";
 
 const ScrollToTop = ({children}) => {
     const {pathname} = useLocation();
@@ -34,6 +35,7 @@ const ScrollToTop = ({children}) => {
       <ScrollToTop>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/flight" element={<FlightList />} />
           <Route path="/" element={<TestPage />} />
           {/* <Route path="/:id" element={<Auth><Detail /></Auth>} />   */}
           {/* <Route path="/" element={<Home />} /> */}
