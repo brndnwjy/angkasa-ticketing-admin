@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
+import Footer from "../../../components/module/footer";
 import { Link } from "react-router-dom";
 
 const BookingList = () => {
@@ -33,6 +34,7 @@ const BookingList = () => {
         <div id="wrapper">
           <Sidebar />
           <div id="content-wrapper" class="d-flex flex-column">
+
             <div id="content">
               <Navi />
 
@@ -101,6 +103,8 @@ const BookingList = () => {
                 </div>
               </div>
             </div>
+
+            <Footer />
           </div>
         </div>
       </main>

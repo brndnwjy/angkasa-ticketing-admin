@@ -2,7 +2,9 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
+import Footer from "../../../components/module/footer";
 import { Link } from "react-router-dom";
+
 import airline from "../../../assets/airline.png";
 
 const AirlineList = () => {
@@ -34,6 +36,7 @@ const AirlineList = () => {
         <div id="wrapper">
           <Sidebar />
           <div id="content-wrapper" class="d-flex flex-column">
+
             <div id="content">
               <Navi />
 
@@ -141,6 +144,8 @@ const AirlineList = () => {
                 </div>
               </div>
             </div>
+
+            <Footer />
           </div>
         </div>
       </main>
