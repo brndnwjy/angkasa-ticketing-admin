@@ -3,6 +3,7 @@ import swal from "sweetalert";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import Login from "../views/auth/login"
+import TestPage from "../views/testing"
 
 const ScrollToTop = ({children}) => {
     const {pathname} = useLocation();
@@ -33,6 +34,7 @@ const ScrollToTop = ({children}) => {
       <ScrollToTop>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={<TestPage />} />
           {/* <Route path="/:id" element={<Auth><Detail /></Auth>} />   */}
           {/* <Route path="/" element={<Home />} /> */}
         </Routes>
