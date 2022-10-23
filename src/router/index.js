@@ -6,6 +6,7 @@ import Login from "../views/auth/login"
 import TestPage from "../views/testing"
 import FlightList from "../views/flight/list";
 import AirlineList from "../views/airline/list";
+import BookingList from "../views/booking/list";
 
 const ScrollToTop = ({children}) => {
     const {pathname} = useLocation();
@@ -36,8 +37,9 @@ const ScrollToTop = ({children}) => {
       <ScrollToTop>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/flight" element={<FlightList />} />
           <Route path="/airline" element={<AirlineList />} />
+          <Route path="/flight" element={<FlightList />} />
+          <Route path="/booking" element={<BookingList />} />
           <Route path="/" element={<TestPage />} />
         </Routes>
         </ScrollToTop>
