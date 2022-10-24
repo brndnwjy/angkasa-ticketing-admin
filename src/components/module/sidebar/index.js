@@ -9,22 +9,22 @@ const Sidebar = () => {
       id="accordionSidebar"
     >
       {/* <!-- Sidebar - Brand --> */}
-      <a
+      <Link
         className="sidebar-brand d-flex align-items-center justify-content-center"
-        href="index.html"
+        to="/"
       >
         <img src={logowhite} alt="logo" />
         <div className="sidebar-brand-text mx-3">Angkasa</div>
-      </a>
+      </Link>
 
       {/* <!-- Divider --> */}
       <hr className="sidebar-divider my-0" />
 
       {/* <!-- Nav Item - Dashboard --> */}
       <li className="nav-item active">
-        <Link className="nav-link" to="index.html">
-          <i className="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span>
+        <Link className="nav-link" to="/">
+          <i className="fas fa-fw fa-home"></i>
+          <span>Home</span>
         </Link>
       </li>
 
@@ -36,7 +36,7 @@ const Sidebar = () => {
 
       {/* <!-- Nav Item - Airlines --> */}
       <li className="nav-item">
-        <Link className="nav-link" to="charts.html">
+        <Link className="nav-link" to="/airline">
           <i className="fas fa-fw fa-plane"></i>
           <span>Airlines</span>
         </Link>
@@ -44,7 +44,7 @@ const Sidebar = () => {
 
       {/* <!-- Nav Item - Flights --> */}
       <li className="nav-item">
-        <Link className="nav-link" to="tables.html">
+        <Link className="nav-link" to="/flight">
           <i className="fas fa-fw fa-plane-departure"></i>
           <span>Flights</span>
         </Link>
@@ -52,7 +52,7 @@ const Sidebar = () => {
 
       {/* <!-- Nav Item - Bookings --> */}
       <li className="nav-item">
-        <Link className="nav-link" to="tables.html">
+        <Link className="nav-link" to="/booking">
           <i className="fas fa-fw fa-chart-area"></i>
           <span>Bookings</span>
         </Link>
@@ -60,10 +60,10 @@ const Sidebar = () => {
 
       {/* <!-- Nav Item - Users --> */}
       <li className="nav-item">
-        <a className="nav-link" href="tables.html">
+        <Link className="nav-link" to="/user">
           <i className="fas fa-fw fa-users"></i>
           <span>Users</span>
-        </a>
+        </Link>
       </li>
     </ul>
   );
