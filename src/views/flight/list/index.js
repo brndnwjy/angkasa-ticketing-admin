@@ -84,7 +84,7 @@ const FlightList = () => {
                             <td>Rp 2,320,000</td>
                             <td>
                               <div class="d-flex justify-content-between">
-                                <Link to="#" class="btn btn-info btn-circle">
+                                <Link to="/flight/1" class="btn btn-info btn-circle">
                                   <i class="fas fa-info-circle"></i>
                                 </Link>
                                 <Link to="#" class="btn btn-warning btn-circle">
