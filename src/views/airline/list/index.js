@@ -85,7 +85,7 @@ const AirlineList = () => {
                             <td>Batik Air</td>
                             <td>
                               <div class="d-flex justify-content-between">
-                                <Link to="#" class="btn btn-info btn-circle">
+                                <Link to="/airline/1" class="btn btn-info btn-circle">
                                   <i class="fas fa-info-circle"></i>
                                 </Link>
                                 <Link to="#" class="btn btn-warning btn-circle">
