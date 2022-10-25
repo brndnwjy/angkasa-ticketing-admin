@@ -36,18 +36,64 @@ const Sidebar = () => {
 
       {/* <!-- Nav Item - Airlines --> */}
       <li className="nav-item">
-        <Link className="nav-link" to="/airline">
+        <Link
+          className="nav-link collapsed"
+          to="#"
+          data-toggle="collapse"
+          data-target="#collapseAirline"
+          aria-expanded="true"
+          aria-controls="collapseAirline"
+        >
           <i className="fas fa-fw fa-plane"></i>
           <span>Airlines</span>
         </Link>
+        <div
+          id="collapseAirline"
+          className="collapse"
+          aria-labelledby="headingTwo"
+          data-parent="#accordionSidebar"
+        >
+          <div className="bg-white py-2 collapse-inner rounded">
+            <h6 className="collapse-header">Manage Airlines :</h6>
+            <Link className="collapse-item" to="/airline/new">
+              Insert
+            </Link>
+            <Link className="collapse-item" to="/airline">
+              Database
+            </Link>
+          </div>
+        </div>
       </li>
 
       {/* <!-- Nav Item - Flights --> */}
       <li className="nav-item">
-        <Link className="nav-link" to="/flight">
+        <Link
+          className="nav-link collapsed"
+          to="#"
+          data-toggle="collapse"
+          data-target="#collapseFlight"
+          aria-expanded="true"
+          aria-controls="collapseFlight"
+        >
           <i className="fas fa-fw fa-plane-departure"></i>
           <span>Flights</span>
         </Link>
+        <div
+          id="collapseFlight"
+          className="collapse"
+          aria-labelledby="headingTwo"
+          data-parent="#accordionSidebar"
+        >
+          <div className="bg-white py-2 collapse-inner rounded">
+            <h6 className="collapse-header">Manage Flights :</h6>
+            <Link className="collapse-item" to="/flight/new">
+              Insert
+            </Link>
+            <Link className="collapse-item" to="/flight">
+              Database
+            </Link>
+          </div>
+        </div>
       </li>
 
       {/* <!-- Nav Item - Bookings --> */}
