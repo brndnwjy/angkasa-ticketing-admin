@@ -34,7 +34,7 @@ const Navi = () => {
           >
             <Link
               className="dropdown-item"
-              to="#"
+              to="/login"
               data-toggle="modal"
               data-target="#logoutModal"
             >

@@ -87,7 +87,7 @@ const FlightList = () => {
                                 <Link to="/flight/1" class="btn btn-info btn-circle">
                                   <i class="fas fa-info-circle"></i>
                                 </Link>
-                                <Link to="#" class="btn btn-warning btn-circle">
+                                <Link to="/flight/edit/1" class="btn btn-warning btn-circle">
                                   <i class="fas fa-edit"></i>
                                 </Link>
                                 <Link to="#" class="btn btn-danger btn-circle">

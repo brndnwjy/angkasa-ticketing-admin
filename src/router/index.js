@@ -1,9 +1,15 @@
 import React, { useEffect } from "react";
 import swal from "sweetalert";
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 
-import Login from "../views/auth/login"
-import TestPage from "../views/testing"
+import Login from "../views/auth/login";
+import Home from "../views";
 import FlightList from "../views/flight/list";
 import AirlineList from "../views/airline/list";
 import BookingList from "../views/booking/list";
@@ -14,36 +20,40 @@ import BookingDetail from "../views/booking/detail";
 import UserDetail from "../views/user/detail";
 import InsertAirline from "../views/airline/insert";
 import InsertFlight from "../views/flight/insert";
+import EditAirline from "../views/airline/edit";
+import EditFlight from "../views/flight/edit";
 
-const ScrollToTop = ({children}) => {
-    const {pathname} = useLocation();
-  
-    useEffect(() => {
-      window.scrollTo(0, 0)
-    }, [pathname])
-  
-    return children
+const ScrollToTop = ({ children }) => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return children;
+};
+
+const Auth = ({ children }) => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    swal({
+      title: "Denied!",
+      text: `Access Denied, Please Login!`,
+      icon: "error",
+    });
+    return <Navigate to="/login" replace />;
   }
-  
-  const Auth = ({ children }) => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      swal({
-        title: "Denied!",
-        text: `Access Denied, Please Login!`,
-        icon: "error",
-    });  
-      return <Navigate to="/login" replace />;
-    } 
-      return children;
-  };
-  
-  const Router = () => {
-    return (
-      <BrowserRouter>
+  return children;
+};
+
+const Router = () => {
+  return (
+    <BrowserRouter>
       <ScrollToTop>
         <Routes>
           <Route path="/login" element={<Login />} />
+
+          <Route path="/" element={<Home />} />
 
           <Route path="/user" element={<UserList />} />
           <Route path="/user/:id" element={<UserDetail />} />
@@ -51,19 +61,19 @@ const ScrollToTop = ({children}) => {
           <Route path="/airline" element={<AirlineList />} />
           <Route path="/airline/:id" element={<AirlineDetail />} />
           <Route path="/airline/new" element={<InsertAirline />} />
+          <Route path="/airline/edit/:id" element={<EditAirline />} />
 
           <Route path="/flight" element={<FlightList />} />
           <Route path="/flight/:id" element={<FlightDetail />} />
-          <Route path="/flight/new" element={<InsertFlight/>} />
+          <Route path="/flight/new" element={<InsertFlight />} />
+          <Route path="/flight/edit/:id" element={<EditFlight />} />
 
           <Route path="/booking" element={<BookingList />} />
           <Route path="/booking/:id" element={<BookingDetail />} />
-
-          <Route path="/" element={<TestPage />} />
         </Routes>
-        </ScrollToTop>
-      </BrowserRouter>
-    );
-  };
-  
-  export default Router;
+      </ScrollToTop>
+    </BrowserRouter>
+  );
+};
+
+export default Router;

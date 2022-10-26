@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./login.module.css"
 import banner from "../../../assets/banner.png"
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -33,12 +34,12 @@ const Login = () => {
                             id="exampleInputPassword"
                             placeholder="Password"
                           />
-                        <a
-                          href="index.html"
+                        <Link
+                          to="/"
                           className="btn btn-primary btn-user btn-block"
                         >
                           Login
-                        </a>
+                        </Link>
                       </form>
                     </div>
                   </div>

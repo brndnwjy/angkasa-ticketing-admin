@@ -82,12 +82,9 @@ const UserList = () => {
                             <td>alex@mail.com</td>
                             <td>(+62)85643430789</td>
                             <td>
-                              <div class="d-flex justify-content-between">
+                              <div class="d-flex justify-content-center">
                                 <Link to="/user/1" class="btn btn-info btn-circle">
                                   <i class="fas fa-info-circle"></i>
-                                </Link>
-                                <Link to="#" class="btn btn-warning btn-circle">
-                                  <i class="fas fa-edit"></i>
                                 </Link>
                               </div>
                             </td>

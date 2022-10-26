@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import airline from "../../../assets/airline.png";
 
 const BookingCard = (...params) => {
@@ -115,6 +116,22 @@ const BookingCard = (...params) => {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="col-11 p-0 m-0 mt-3 d-flex flex-row justify-content-around">
+            <Link to="#" className="btn btn-danger btn-icon-split col-4 d-flex justify-content-start">
+              <span className="icon text-white-50">
+                <i className="fas fa-trash"></i>
+              </span>
+              <span className="text ml-2">Cancel Booking</span>
+            </Link>
+
+            <Link href="#" class="btn btn-success btn-icon-split col-4 d-flex justify-content-start">
+              <span class="icon text-white-50">
+                <i class="fas fa-check"></i>
+              </span>
+              <span class="text ml-2">Approve Payment</span>
+            </Link>
           </div>
         </div>
       </div>
