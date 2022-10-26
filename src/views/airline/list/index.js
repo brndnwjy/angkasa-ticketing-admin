@@ -49,6 +49,29 @@ const AirlineList = () => {
           href="vendor/datatables/dataTables.bootstrap4.min.css"
           rel="stylesheet"
         />
+
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        {/* <!-- Core plugin JavaScript--> */}
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        {/* <!-- Custom scripts for all pages--> */}
+        <script src="js/sb-admin-2.min.js"></script>
+
+        {/* <!-- Page level plugins --> */}
+        <script src="vendor/chart.js/Chart.min.js"></script>
+
+        {/* <!-- Page level custom scripts --> */}
+        <script src="js/demo/chart-area-demo.js"></script>
+        <script src="js/demo/chart-pie-demo.js"></script>
+
+        {/* <!-- Page level plugins --> */}
+        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+        {/* <!-- Page level custom scripts --> */}
+        <script src="js/demo/datatables-demo.js"></script>
       </Helmet>
 
       <main id="page-top">
@@ -100,7 +123,10 @@ const AirlineList = () => {
                                 <tr>
                                   <td>{item.airline_id}</td>
                                   <td>
-                                    <img src={`http://localhost:4000/logo/${item.logo}`} alt="" />
+                                    <img
+                                      src={`http://localhost:4000/logo/${item.logo}`}
+                                      alt=""
+                                    />
                                   </td>
                                   <td>{item.name}</td>
                                   <td>

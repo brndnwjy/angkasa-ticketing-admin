@@ -67,7 +67,7 @@ const AirlineDetail = () => {
                 <AirlineCard
                   airlineId={detail.airline_id}
                   name={detail.name}
-                  // logo={detail.logo}
+                  logo={detail.logo}
                 />
               </div>
             </div>
