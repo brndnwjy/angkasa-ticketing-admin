@@ -32,11 +32,11 @@ const Home = () => {
       <main id="page-top">
         <div id="wrapper">
           <Sidebar />
-          <div id="content-wrapper" class="d-flex flex-column">
+          <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
               <Navi />
 
-              <div class="container d-flex justify-content-center align-items-center h-75">
+              <div className="container d-flex justify-content-center align-items-center h-75">
                 <p style={{ fontSize: "80px" }}>#ComebackStronger :)</p>
               </div>
             </div>

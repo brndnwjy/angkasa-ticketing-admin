@@ -1,11 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getFlight, removeFlight } from "../../../redux/action/flight.action";
 
 const FlightList = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { flight } = useSelector((state) => state.flight);
+
+  const getData = async () => {
+    try {
+      dispatch(getFlight());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleRemove = (e) => {
+    try {
+      dispatch(removeFlight(e.target.value, navigate))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <>
       <Helmet>
@@ -34,7 +62,6 @@ const FlightList = () => {
         <div id="wrapper">
           <Sidebar />
           <div id="content-wrapper" class="d-flex flex-column">
-
             <div id="content">
               <Navi />
 
@@ -77,74 +104,39 @@ const FlightList = () => {
                           </tr>
                         </tfoot>
                         <tbody>
-                          <tr>
-                            <td>ID, Jakarta</td>
-                            <td>SG, Singapore</td>
-                            <td>Batik Air</td>
-                            <td>Rp 2,320,000</td>
-                            <td>
-                              <div class="d-flex justify-content-between">
-                                <Link to="/flight/1" class="btn btn-info btn-circle">
-                                  <i class="fas fa-info-circle"></i>
-                                </Link>
-                                <Link to="/flight/edit/1" class="btn btn-warning btn-circle">
-                                  <i class="fas fa-edit"></i>
-                                </Link>
-                                <Link to="#" class="btn btn-danger btn-circle">
-                                  <i class="fas fa-trash"></i>
-                                </Link>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>ID, Manado</td>
-                            <td>SG, Singapore</td>
-                            <td>Batik Air</td>
-                            <td>Rp 2,720,000</td>
-                            <td>B</td>
-                          </tr>
-                          <tr>
-                            <td>MY, Kuala Lumpur</td>
-                            <td>ID, Jakarta</td>
-                            <td>Malaysia Airlines</td>
-                            <td>Rp 2,020,000</td>
-                            <td>A</td>
-                          </tr>
-                          <tr>
-                            <td>ID, Jakarta</td>
-                            <td>MY, Sabah</td>
-                            <td>Garuda</td>
-                            <td>Rp 1,960,000</td>
-                            <td>B</td>
-                          </tr>
-                          <tr>
-                            <td>TH, Bangkok</td>
-                            <td>SG, Singapore</td>
-                            <td>Thailand Airlines</td>
-                            <td>Rp 4,170,000</td>
-                            <td>F</td>
-                          </tr>
-                          <tr>
-                            <td>ID, Yogyakarta</td>
-                            <td>PH, Cebu</td>
-                            <td>Citylink</td>
-                            <td>Rp 3,100,000</td>
-                            <td>A</td>
-                          </tr>
-                          <tr>
-                            <td>ID, Bali</td>
-                            <td>SG, Singapore</td>
-                            <td>Batik Air</td>
-                            <td>Rp 1,250,000</td>
-                            <td>A</td>
-                          </tr>
-                          <tr>
-                            <td>ID, Jakarta</td>
-                            <td>VN, Ho Chi Mihn</td>
-                            <td>Air Asia</td>
-                            <td>Rp 3,180,000</td>
-                            <td>B</td>
-                          </tr>
+                          {flight
+                            ? flight.map((item) => (
+                                <tr>
+                                  <td>{item.departure_country}, {item.departure_city}</td>
+                                  <td>{item.arrival_country}, {item.arrival_city}</td>
+                                  <td>{item.airline}</td>
+                                  <td>Rp {item.price}</td>
+                                  <td>
+                                    <div class="d-flex justify-content-between">
+                                      <Link
+                                        to={`/flight/${item.flight_id}`}
+                                        class="btn btn-info btn-circle"
+                                      >
+                                        <i class="fas fa-info-circle"></i>
+                                      </Link>
+                                      <Link
+                                        to={`/flight/edit/${item.flight_id}`}
+                                        class="btn btn-warning btn-circle"
+                                      >
+                                        <i class="fas fa-edit"></i>
+                                      </Link>
+                                      <button
+                                        onClick={handleRemove}
+                                        value={item.flight_id}
+                                        class="btn btn-danger btn-circle"
+                                      >
+                                        <i class="fas fa-trash"></i>
+                                      </button>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ))
+                            : ""}
                         </tbody>
                       </table>
                     </div>

@@ -1,10 +1,95 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addFlight, getFlight } from "../../../redux/action/flight.action";
 
 const InsertFlight = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { airline } = useSelector((state) => state.airline);
+
+  const [flightForm, setFlightForm] = useState({
+    airline_id: "",
+    departure_country: "",
+    departure_city: "",
+    departure_time: "",
+    arrival_country: "",
+    arrival_city: "",
+    arrival_time: "",
+    terminal: "",
+    gate: "",
+    price: 0,
+  });
+  const [wifi, setWifi] = useState(false);
+  const [lunch, setLunch] = useState(false);
+  const [luggage, setLuggage] = useState(false);
+  const [transit, setTransit] = useState(false);
+
+  const handleInput = (e) => {
+    setFlightForm({
+      ...flightForm,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleWifi = () => {
+    if (wifi) {
+      setWifi(false);
+    } else {
+      setWifi(true);
+    }
+  };
+
+  const handleLunch = () => {
+    if (lunch) {
+      setLunch(false);
+    } else {
+      setLunch(true);
+    }
+  };
+
+  const handleLuggage = () => {
+    if (luggage) {
+      setLuggage(false);
+    } else {
+      setLuggage(true);
+    }
+  };
+
+  const handleTransit = () => {
+    if (transit) {
+      setTransit(false);
+    } else {
+      setTransit(true);
+    }
+  };
+
+  const handleInsert = (e) => {
+    e.preventDefault();
+
+    let data = {
+      ...flightForm,
+      price : parseInt(flightForm.price),
+      wifi,
+      lunch,
+      luggage,
+      transit
+    };
+
+    console.log(data)
+    dispatch(addFlight(data, navigate));
+  };
+
+  useEffect(() => {
+    dispatch(getFlight());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -48,19 +133,29 @@ const InsertFlight = () => {
                         Flight Registree
                       </h6>
                     </div>
-                    <form className="card-body mt-3 d-flex flex-column">
+                    <form
+                      onSubmit={handleInsert}
+                      className="card-body mt-3 d-flex flex-column"
+                    >
                       <section className="d-flex col-12 justify-content-between align-items-center">
                         <div>
                           <label htmlFor="airline">Airline : </label>
                           <select
                             id="airline"
+                            name="airline_id"
                             className="form-select ml-2"
                             aria-label="airline select"
+                            onChange={handleInput}
                           >
-                            <option selected>Select Airline</option>
+                            <option selected>
+                              Select Airline
+                            </option>
+                            {airline
+                              ? airline.map((item) => (
+                                  <option value={item.airline_id}>{item.name}</option>
+                                ))
+                              : ""}
                             <option value="1">Garuda Indonesia</option>
-                            <option value="2">Batik Air</option>
-                            <option value="3">Citylink</option>
                           </select>
                         </div>
 
@@ -69,8 +164,10 @@ const InsertFlight = () => {
                             <label htmlFor="terminal">Terminal : </label>
                             <select
                               id="terminal"
+                              name="terminal"
                               className="form-select ml-2"
                               aria-label="terminal select"
+                              onChange={handleInput}
                             >
                               <option selected>Select Terminal</option>
                               <option value="1">1</option>
@@ -85,8 +182,10 @@ const InsertFlight = () => {
                             <label htmlFor="gate">Gate : </label>
                             <select
                               id="gate"
+                              name="gate"
                               className="form-select ml-2"
                               aria-label="gate select"
+                              onChange={handleInput}
                             >
                               <option selected>Select Gate</option>
                               <option value="A">A</option>
@@ -105,17 +204,32 @@ const InsertFlight = () => {
                         <h6 className="col-2 p-0 m-0">Departure : </h6>
                         <div className="col-4 d-flex align-items-center">
                           <label className="m-0 mr-2">Country</label>
-                          <input className="col-9" type="text" />
+                          <input
+                            className="col-9"
+                            type="text"
+                            name="departure_country"
+                            onChange={handleInput}
+                          />
                         </div>
 
                         <div className="col-3 d-flex align-items-center">
                           <label className="m-0 mr-2">City</label>
-                          <input className="col-9" type="text" />
+                          <input
+                            className="col-9"
+                            type="text"
+                            name="departure_city"
+                            onChange={handleInput}
+                          />
                         </div>
 
                         <div className="col-3 d-flex align-items-center">
                           <label className="m-0 mr-2">Time</label>
-                          <input className="col-8" type="time" />
+                          <input
+                            className="col-8"
+                            type="time"
+                            name="departure_time"
+                            onChange={handleInput}
+                          />
                         </div>
                       </section>
 
@@ -123,17 +237,32 @@ const InsertFlight = () => {
                         <h6 className="col-2 p-0 m-0">Arrival : </h6>
                         <div className="col-4 d-flex align-items-center">
                           <label className="m-0 mr-2">Country</label>
-                          <input className="col-9" type="text" />
+                          <input
+                            className="col-9"
+                            type="text"
+                            name="arrival_country"
+                            onChange={handleInput}
+                          />
                         </div>
 
                         <div className="col-3 d-flex align-items-center">
                           <label className="m-0 mr-2">City</label>
-                          <input className="col-9" type="text" />
+                          <input
+                            className="col-9"
+                            type="text"
+                            name="arrival_city"
+                            onChange={handleInput}
+                          />
                         </div>
 
                         <div className="col-3 d-flex align-items-center">
                           <label className="m-0 mr-2">Time</label>
-                          <input className="col-8" type="time" />
+                          <input
+                            className="col-8"
+                            type="time"
+                            name="arrival_time"
+                            onChange={handleInput}
+                          />
                         </div>
                       </section>
 
@@ -145,8 +274,8 @@ const InsertFlight = () => {
                           <input
                             class="form-check-input"
                             type="checkbox"
-                            value=""
                             id="wifi"
+                            onChange={handleWifi}
                           />
                           <label class="form-check-label" for="wifi">
                             Wi-Fi
@@ -157,8 +286,8 @@ const InsertFlight = () => {
                           <input
                             class="form-check-input"
                             type="checkbox"
-                            value=""
                             id="inflightmeal"
+                            onClick={handleLunch}
                           />
                           <label class="form-check-label" for="inflightmeal">
                             In-flight Meal
@@ -169,19 +298,46 @@ const InsertFlight = () => {
                           <input
                             class="form-check-input"
                             type="checkbox"
-                            value=""
                             id="luggage"
+                            onClick={handleLuggage}
                           />
                           <label class="form-check-label" for="luggage">
                             Luggage
+                          </label>
+                        </div>
+
+                        <div class="form-check mr-5">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="transit"
+                            onClick={handleTransit}
+                          />
+                          <label class="form-check-label" for="transit">
+                            Transit
                           </label>
                         </div>
                       </section>
 
                       <hr className="col-12 px-0 mx-0" />
 
+                      <section className="d-flex col-12 align-items-center">
+                        <label className="col-2 p-0 m-0 mr-2">
+                          <h6 className="p-0 m-0">Price : </h6>
+                        </label>
+                        <input
+                          className="col-5"
+                          type="number"
+                          step="10000"
+                          name="price"
+                          onChange={handleInput}
+                        />
+                      </section>
+
+                      <hr className="col-12 px-0 mx-0" />
+
                       <div className="col-12 d-flex justify-content-center">
-                        <button className="btn btn-primary col-3">
+                        <button type="submit" className="btn btn-primary col-3">
                           Submit
                         </button>
                       </div>
