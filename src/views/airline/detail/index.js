@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
 import AirlineCard from "../../../components/module/airlineCard";
 import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAirlineDetail } from "../../../redux/action/airline.action";
 
 const AirlineDetail = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const { detail } = useSelector((state) => state.airline);
+
+  const getDetail = (params) => {
+    dispatch(getAirlineDetail(params));
+  };
+
+  useEffect(() => {
+    getDetail(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   return (
     <>
@@ -50,7 +64,11 @@ const AirlineDetail = () => {
                 </Link>
 
                 {/* <!-- Card Example --> */}
-                <AirlineCard flightId={id} />
+                <AirlineCard
+                  airlineId={detail.airline_id}
+                  name={detail.name}
+                  // logo={detail.logo}
+                />
               </div>
             </div>
 

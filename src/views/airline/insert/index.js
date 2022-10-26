@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addAirline } from "../../../redux/action/airline.action";
 
 const InsertAirline = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [logo, setLogo] = useState();
+  const [preview, setPreview] = useState();
+
+  const handleInput = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleFile = (e) => {
+    setLogo(e.target.files[0]);
+    setPreview([URL.createObjectURL(e.target.files[0])]);
+  };
+
+  const handleInsert = (e) => {
+    e.preventDefault();
+
+    let data = new FormData();
+    data.append("name", name);
+    data.append("logo", logo);
+
+    dispatch(addAirline(data, navigate));
+  };
+
   return (
     <>
       <Helmet>
@@ -43,20 +72,32 @@ const InsertAirline = () => {
 
                 <div className="col-12 mb-4">
                   <div className="card shadow mb-4">
-                    <div className="card-body mt-3 d-flex justify-content-around">
+                    <form
+                      // onSubmit={handleInsert}
+                      className="card-body mt-3 d-flex justify-content-around"
+                    >
                       <div className="d-flex my-3 col-5 flex-column justify-content-center align-items-center">
                         <label
                           htmlFor="airlineLogo"
                           style={{ height: "500px" }}
                           className="card shadow-sm d-flex col-12 justify-content-center align-items-center"
                         >
-                          Input here
+                          <img
+                            src={preview ? preview : ""}
+                            alt=""
+                            style={{ maxWidth: "200px" }}
+                          />
                         </label>
-                        <input type="file" id="airlineLogo" hidden />
+                        <input
+                          type="file"
+                          id="airlineLogo"
+                          onChange={handleFile}
+                          hidden
+                        />
                         <h3 style={{ height: "300px" }}>Airline Logo</h3>
                       </div>
 
-                      <form className="d-flex my-3 col-6 flex-column justify-content-center">
+                      <div className="d-flex my-3 col-6 flex-column justify-content-center">
                         <div className="d-flex flex-row align-items-center">
                           <label htmlFor="airlineName" className="col-2 p-0">
                             <h4>Name</h4>
@@ -65,11 +106,14 @@ const InsertAirline = () => {
                             id="airlineName"
                             type="text"
                             className="form-control mb-3 col-10"
+                            onChange={handleInput}
                           />
                         </div>
-                        <button className="btn btn-primary">Submit</button>
-                      </form>
-                    </div>
+                        <button type="submit" className="btn btn-primary" onClick={handleInsert}>
+                          Submit
+                        </button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>

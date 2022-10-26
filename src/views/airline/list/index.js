@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
-import { Link } from "react-router-dom";
+import { getAirline } from "../../../redux/action/airline.action";
 
-import airline from "../../../assets/airline.png";
+import airlineImg from "../../../assets/airline.png";
 
 const AirlineList = () => {
+  const dispatch = useDispatch();
+
+  const { airline } = useSelector((state) => state.airline);
+
+  const getData = async () => {
+    try {
+      dispatch(getAirline());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [airline]);
+
   return (
     <>
       <Helmet>
@@ -36,7 +55,6 @@ const AirlineList = () => {
         <div id="wrapper">
           <Sidebar />
           <div id="content-wrapper" class="d-flex flex-column">
-
             <div id="content">
               <Navi />
 
@@ -77,58 +95,57 @@ const AirlineList = () => {
                           </tr>
                         </tfoot>
                         <tbody>
+                          {airline
+                            ? airline.map((item) => (
+                                <tr>
+                                  <td>{item.airline_id}</td>
+                                  <td>
+                                    <img src={`http://localhost:4000/logo/${item.logo}`} alt="" />
+                                  </td>
+                                  <td>{item.name}</td>
+                                  <td>
+                                    <div class="d-flex justify-content-between">
+                                      <Link
+                                        to={`/airline/${item.airline_id}`}
+                                        class="btn btn-info btn-circle"
+                                      >
+                                        <i class="fas fa-info-circle"></i>
+                                      </Link>
+                                      <Link
+                                        to={`/airline/edit/${item.airline_id}`}
+                                        class="btn btn-warning btn-circle"
+                                      >
+                                        <i class="fas fa-edit"></i>
+                                      </Link>
+                                      <Link
+                                        to="#"
+                                        class="btn btn-danger btn-circle"
+                                      >
+                                        <i class="fas fa-trash"></i>
+                                      </Link>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ))
+                            : ""}
                           <tr>
                             <td>001</td>
                             <td>
-                              <img src={airline} alt="" />
+                              <img src={airlineImg} alt="" />
                             </td>
                             <td>Batik Air</td>
                             <td>
                               <div class="d-flex justify-content-between">
-                                <Link to="/airline/1" class="btn btn-info btn-circle">
+                                <Link
+                                  to="/airline/1"
+                                  class="btn btn-info btn-circle"
+                                >
                                   <i class="fas fa-info-circle"></i>
                                 </Link>
-                                <Link to="/airline/edit/1" class="btn btn-warning btn-circle">
-                                  <i class="fas fa-edit"></i>
-                                </Link>
-                                <Link to="#" class="btn btn-danger btn-circle">
-                                  <i class="fas fa-trash"></i>
-                                </Link>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>002</td>
-                            <td>
-                              <img src={airline} alt="" />
-                            </td>
-                            <td>Air Asia</td>
-                            <td>
-                              <div class="d-flex justify-content-between">
-                                <Link to="#" class="btn btn-info btn-circle">
-                                  <i class="fas fa-info-circle"></i>
-                                </Link>
-                                <Link to="#" class="btn btn-warning btn-circle">
-                                  <i class="fas fa-edit"></i>
-                                </Link>
-                                <Link to="#" class="btn btn-danger btn-circle">
-                                  <i class="fas fa-trash"></i>
-                                </Link>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>003</td>
-                            <td>
-                              <img src={airline} alt="" />
-                            </td>
-                            <td>Garuda</td>
-                            <td>
-                              <div class="d-flex justify-content-between">
-                                <Link to="#" class="btn btn-info btn-circle">
-                                  <i class="fas fa-info-circle"></i>
-                                </Link>
-                                <Link to="#" class="btn btn-warning btn-circle">
+                                <Link
+                                  to="/airline/edit/1"
+                                  class="btn btn-warning btn-circle"
+                                >
                                   <i class="fas fa-edit"></i>
                                 </Link>
                                 <Link to="#" class="btn btn-danger btn-circle">

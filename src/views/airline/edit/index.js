@@ -1,14 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
 
 import airline from "../../../assets/airline.png";
+import { useDispatch, useSelector } from "react-redux";
+import { getAirlineDetail, updateAirline } from "../../../redux/action/airline.action";
 
 const EditAirline = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { detail } = useSelector((state) => state.airline);
+
+  const [name, setName] = useState("");
+  const [logo, setLogo] = useState();
+  const [preview, setPreview] = useState();
+
+  const handleInput = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleFile = (e) => {
+    setLogo(e.target.files[0]);
+    setPreview([URL.createObjectURL(e.target.files[0])]);
+  };
+
+  const getDetail = async (params) => {
+    await dispatch(getAirlineDetail(params));
+    if (detail.logo) {
+      setPreview(detail.logo);
+    }
+  };
+
+  useEffect(() => {
+    getDetail(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    let data = new FormData();
+    data.append("name", name);
+    data.append("logo", logo);
+
+    dispatch(updateAirline(id, data, navigate));
+  }
 
   return (
     <>
@@ -57,20 +98,20 @@ const EditAirline = () => {
                         Airline ID : {id}
                       </h6>
                     </div>
-                    <div className="card-body mt-3 d-flex justify-content-around">
+                    <form className="card-body mt-3 d-flex justify-content-around">
                       <div className="d-flex my-3 col-5 flex-column justify-content-center align-items-center">
                         <label
                           htmlFor="airlineLogo"
                           style={{ height: "500px" }}
                           className="card shadow-sm d-flex col-12 justify-content-center align-items-center"
                         >
-                          <img src={airline} alt="airline logo" />
+                          <img src={preview ? preview : ""} alt="airline logo" />
                         </label>
-                        <input type="file" id="airlineLogo" hidden />
+                        <input onChange={handleFile} type="file" id="airlineLogo" hidden />
                         <h3 style={{ height: "300px" }}>Airline Logo</h3>
                       </div>
 
-                      <form className="d-flex my-3 col-6 flex-column justify-content-center">
+                      <div className="d-flex my-3 col-6 flex-column justify-content-center">
                         <div className="d-flex flex-row align-items-center">
                           <label htmlFor="airlineName" className="col-2 p-0">
                             <h4>Name</h4>
@@ -78,13 +119,14 @@ const EditAirline = () => {
                           <input
                             id="airlineName"
                             type="text"
+                            onChange={handleInput}
                             className="form-control mb-3 col-10"
-                            placeholder="Garuda Indonesia"
+                            placeholder={detail.name ? detail.name : "Airline Name"}
                           />
                         </div>
-                        <button className="btn btn-primary">Edit</button>
-                      </form>
-                    </div>
+                        <button onClick={handleUpdate} className="btn btn-primary">Edit</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>

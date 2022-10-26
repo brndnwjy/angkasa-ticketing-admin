@@ -1,7 +1,7 @@
 import React from "react";
 import airline from "../../../assets/airline.png";
 
-const AirlineCard = (...params) => {
+const AirlineCard = ({...params}) => {
   return (
     <div className="col-12 mb-4">
       <div className="card shadow mb-4">
@@ -11,7 +11,7 @@ const AirlineCard = (...params) => {
         <div className="card-body d-flex flex-column">
           <div className="d-flex my-3 col-12 justify-content-center align-items-center">
             <img src={airline} alt="Garuda Indonesia" className="mr-3" />
-            <h1>Garuda Indonesia</h1>
+            <h1>{params.name}</h1>
           </div>
         </div>
       </div>
