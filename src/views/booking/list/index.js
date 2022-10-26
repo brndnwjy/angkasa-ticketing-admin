@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
 import { Link } from "react-router-dom";
+import { getBooking } from "../../../redux/action/booking.action";
 
 const BookingList = () => {
+  const dispatch = useDispatch();
+
+  const { booking } = useSelector((state) => state.booking);
+
+  const getData = async () => {
+    try {
+      dispatch(getBooking());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -34,7 +53,6 @@ const BookingList = () => {
         <div id="wrapper">
           <Sidebar />
           <div id="content-wrapper" class="d-flex flex-column">
-
             <div id="content">
               <Navi />
 
@@ -79,6 +97,31 @@ const BookingList = () => {
                           </tr>
                         </tfoot>
                         <tbody>
+                          {booking
+                            ? booking.map((item) => (
+                                <tr>
+                                  <td>{item.booking_id}</td>
+                                  <td>{item.flight_id}</td>
+                                  <td>{item.username}</td>
+                                  <td>Rp {item.price}</td>
+                                  <td>
+                                    {item.payment_status
+                                      ? "E-Ticket Issued"
+                                      : "Pending"}
+                                  </td>
+                                  <td>
+                                    <div class="d-flex justify-content-center">
+                                      <Link
+                                        to={`/booking/${item.booking_id}`}
+                                        class="btn btn-info btn-circle"
+                                      >
+                                        <i class="fas fa-info-circle"></i>
+                                      </Link>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ))
+                            : ""}
                           <tr>
                             <td>001</td>
                             <td>01A</td>
@@ -86,8 +129,11 @@ const BookingList = () => {
                             <td>Rp 3,100,000</td>
                             <td>Pending</td>
                             <td>
-                            <div class="d-flex justify-content-center">
-                                <Link to="/booking/1" class="btn btn-info btn-circle">
+                              <div class="d-flex justify-content-center">
+                                <Link
+                                  to="/booking/1"
+                                  class="btn btn-info btn-circle"
+                                >
                                   <i class="fas fa-info-circle"></i>
                                 </Link>
                               </div>

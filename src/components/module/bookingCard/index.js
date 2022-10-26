@@ -2,40 +2,48 @@ import React from "react";
 import { Link } from "react-router-dom";
 import airline from "../../../assets/airline.png";
 
-const BookingCard = (...params) => {
+const BookingCard = ({ data }) => {
   return (
     <div className="col-12 mb-4">
       <div className="card shadow mb-4">
         <div className="card-header py-3">
           <h6 className="m-0 font-weight-bold text-primary">
-            Booking ID : {params.bookingId}
+            Booking ID : {data.booking_id}
           </h6>
         </div>
         <div className="card-body d-flex flex-column align-items-center">
           <div className="d-flex my-3 col-12 justify-content-between align-items-center">
-            <p>User ID : 001</p>
-            <p>Flight ID : 001</p>
+            <p>User ID : {data.user_id}</p>
+            <p>Flight ID : {data.flight_id}</p>
           </div>
 
           <div className="d-flex my-3 col-12 justify-content-center align-items-center">
-            <img src={airline} alt="Garuda Indonesia" className="mr-3" />
-            <h1>Garuda Indonesia</h1>
+            <img
+              src={data.logo ? data.logo : airline}
+              alt="Garuda Indonesia"
+              className="mr-3"
+            />
+            <h1>{data.name}</h1>
           </div>
 
           <div className="d-flex my-3 col-12 justify-content-center align-items-center">
             <div className="card-body col-6 d-flex text-center justify-content-center align-items-center">
               <i className="fas fa-fw fa-plane-departure fa-3x mr-4" />
               <div className="d-flex flex-column align-items-start">
-                <h3>IDN - Jakarta</h3>
-                <span>(12:15)</span>
+                <h3>
+                  {data.departure_country} - {data.departure_city}
+                </h3>
+                <span>({data.departure_time})</span>
               </div>
             </div>
 
             <div className="card-body col-6 d-flex text-center justify-content-center align-items-center">
               <i className="fas fa-fw fa-plane-arrival fa-3x mr-4" />
               <div className="d-flex flex-column align-items-start">
-                <h3>SGP - Singapore</h3>
-                <span>(14:25)</span>
+                <h3>
+                  {data.arrival_country} - {data.arrival_city}
+                </h3>
+                <span>({data.arrival_time})</span>
               </div>
             </div>
           </div>
@@ -48,8 +56,10 @@ const BookingCard = (...params) => {
                 </h6>
               </div>
               <div className="d-flex mt-3 mx-4 justify-content-between align-items-center">
-                <p>Mr. Alex Ferguson</p>
-                <p>British</p>
+                <p>
+                  {data.cp_title}. {data.cp_name}
+                </p>
+                <p>{data.cp_nationality}</p>
               </div>
             </div>
 
@@ -60,9 +70,9 @@ const BookingCard = (...params) => {
                 </h6>
               </div>
               <div className="d-flex mt-3 mx-4 justify-content-between align-items-center">
-                <p>Brandon Wijaya</p>
-                <p>brandon@mail.com</p>
-                <p>+62 856 7676 8593</p>
+                <p>{data.username}</p>
+                <p>{data.email}</p>
+                <p>{data.phone}</p>
               </div>
             </div>
           </div>
@@ -88,10 +98,10 @@ const BookingCard = (...params) => {
                   <p> &nbsp; : &nbsp;</p>
                 </div>
                 <div>
-                  <p>Yes</p>
-                  <p>Yes</p>
-                  <p>Yes</p>
-                  <p>Yes</p>
+                  <p>{data.wifi ? "Yes" : "No"}</p>
+                  <p>{data.lunch ? "Yes" : "No"}</p>
+                  <p>{data.luggage ? "Yes" : "No"}</p>
+                  <p>{data.travel_insurance ? "Yes" : "No"}</p>
                 </div>
               </div>
 
@@ -109,24 +119,30 @@ const BookingCard = (...params) => {
                   <p>&nbsp; : &nbsp;</p>
                 </div>
                 <div>
-                  <p>1</p>
-                  <p>A</p>
-                  <p>Rp 3.150.000</p>
-                  <p>Pending</p>
+                  <p>{data.terminal}</p>
+                  <p>{data.gate}</p>
+                  <p>Rp {data.price}</p>
+                  <p>{data.payment_status ? "E-Ticket Issued" : "Pending"}</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="col-11 p-0 m-0 mt-3 d-flex flex-row justify-content-around">
-            <Link to="#" className="btn btn-danger btn-icon-split col-4 d-flex justify-content-start">
+            <Link
+              to="#"
+              className="btn btn-danger btn-icon-split col-4 d-flex justify-content-start"
+            >
               <span className="icon text-white-50">
                 <i className="fas fa-trash"></i>
               </span>
               <span className="text ml-2">Cancel Booking</span>
             </Link>
 
-            <Link href="#" class="btn btn-success btn-icon-split col-4 d-flex justify-content-start">
+            <Link
+              href="#"
+              class="btn btn-success btn-icon-split col-4 d-flex justify-content-start"
+            >
               <span class="icon text-white-50">
                 <i class="fas fa-check"></i>
               </span>

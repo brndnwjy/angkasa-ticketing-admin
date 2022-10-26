@@ -1,13 +1,28 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Helmet } from "react-helmet";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
 import BookingCard from "../../../components/module/bookingCard";
 import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getBookingDetail } from "../../../redux/action/booking.action";
 
 const BookingDetail = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const { detail } = useSelector((state) => state.booking);
+
+  const getDetail = (params) => {
+    dispatch(getBookingDetail(params));
+  };
+
+  useEffect(() => {
+    getDetail(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
 
   return (
     <>
@@ -50,7 +65,7 @@ const BookingDetail = () => {
                 </Link>
 
                 {/* <!-- Card Example --> */}
-                <BookingCard bookingId={id} />
+                <BookingCard data={detail} />
               </div>
             </div>
 
