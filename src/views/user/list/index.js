@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../../redux/action/user.action";
 
 const UserList = () => {
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.user);
+
+  const getData = async () => {
+    try {
+      dispatch(getUser());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -76,6 +95,26 @@ const UserList = () => {
                           </tr>
                         </tfoot>
                         <tbody>
+                          {user
+                            ? user.map((item) => (
+                                <tr>
+                                  <td>{item.user_id}</td>
+                                  <td>{item.username}</td>
+                                  <td>{item.email}</td>
+                                  <td>{item.phone}</td>
+                                  <td>
+                                    <div class="d-flex justify-content-center">
+                                      <Link
+                                        to={`/user/${item.user_id}`}
+                                        class="btn btn-info btn-circle"
+                                      >
+                                        <i class="fas fa-info-circle"></i>
+                                      </Link>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ))
+                            : ""}
                           <tr>
                             <td>001</td>
                             <td>Alexander Purwoto</td>
@@ -83,7 +122,10 @@ const UserList = () => {
                             <td>(+62)85643430789</td>
                             <td>
                               <div class="d-flex justify-content-center">
-                                <Link to="/user/1" class="btn btn-info btn-circle">
+                                <Link
+                                  to="/user/1"
+                                  class="btn btn-info btn-circle"
+                                >
                                   <i class="fas fa-info-circle"></i>
                                 </Link>
                               </div>

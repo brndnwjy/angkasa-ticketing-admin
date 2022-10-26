@@ -5,7 +5,6 @@ import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
 
-import airline from "../../../assets/airline.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getAirlineDetail, updateAirline } from "../../../redux/action/airline.action";
 

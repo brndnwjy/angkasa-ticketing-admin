@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
 import UserCard from "../../../components/module/userCard";
 import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserDetail } from "../../../redux/action/user.action";
 
 const UserDetail = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const { detail } = useSelector((state) => state.user);
+
+  const getDetail = (params) => {
+    dispatch(getUserDetail(params));
+  };
+
+  useEffect(() => {
+    getDetail(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   return (
     <>
@@ -50,7 +64,7 @@ const UserDetail = () => {
                 </Link>
 
                 {/* <!-- Card Example --> */}
-                <UserCard userId={id} />
+                <UserCard data={detail} />
               </div>
             </div>
 
