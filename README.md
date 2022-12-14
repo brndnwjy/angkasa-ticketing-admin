@@ -105,6 +105,8 @@ Contributions are what make the open source community such an amazing place to b
 
 <!-- Related Projects -->
 ## Related Project
+:rocket: [`Angkasa (Frontend)`](https://github.com/brndnwjy/angkasa-ticketing-app)
+
 :rocket: [`Angkasa (Backend)`](https://github.com/brndnwjy/angkasa-ticketing-api)
 
 :rocket: [`Angkasa App Demo`](https://angkasa-ticketing.vercel.app)
