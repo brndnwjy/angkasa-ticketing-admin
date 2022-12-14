@@ -32,7 +32,7 @@
 
 <!-- About The Project -->
 ## About The Project
-Tikitoko Description coming soon!
+Admin app for Angkasa
 
 ### Built With
 This app was built with some technologies below:
