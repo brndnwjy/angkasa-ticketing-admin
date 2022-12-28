@@ -1,7 +1,7 @@
 import React from "react";
 import airline from "../../../assets/airline.png";
 
-const UserCard = ({data}) => {
+const UserCard = ({ data }) => {
   return (
     <div className="col-12 mb-4">
       <div className="card shadow mb-4">
@@ -12,7 +12,17 @@ const UserCard = ({data}) => {
         </div>
         <div className="card-body d-flex flex-column">
           <div className="d-flex mt-3 mb-2 col-12 flex-column justify-content-center align-items-center">
-            <img src={data.avatar ? data.avatar : airline} alt="profile" />
+            <img
+              src={data.ava_url ? data.ava_url : airline}
+              alt="profile"
+              style={{
+                width: "150px",
+                height: "150px",
+                border: "1px solid black",
+                borderRadius: "50%",
+                objectFit: "cover",
+              }}
+            />
             <h3 className="mt-3">{data.username}</h3>
           </div>
 

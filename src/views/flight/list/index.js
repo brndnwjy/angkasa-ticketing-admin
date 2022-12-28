@@ -26,9 +26,9 @@ const FlightList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleRemove = (e) => {
+  const handleRemove = (param) => {
     try {
-      dispatch(removeFlight(e.target.value, navigate));
+      dispatch(removeFlight(param));
     } catch (error) {
       console.log(error);
     }
@@ -154,8 +154,8 @@ const FlightList = () => {
                                         <i class="fas fa-edit"></i>
                                       </Link>
                                       <button
-                                        onClick={handleRemove}
                                         value={item.flight_id}
+                                        onClick={() => handleRemove(item.flight_id)}
                                         class="btn btn-danger btn-circle"
                                       >
                                         <i class="fas fa-trash"></i>

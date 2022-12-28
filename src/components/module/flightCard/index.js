@@ -2,6 +2,7 @@ import React from "react";
 import airlineImg from "../../../assets/airline.png";
 
 const FlightCard = ({ data }) => {
+  
   return (
     <div className="col-12 mb-4">
       <div className="card shadow mb-4">
@@ -13,9 +14,10 @@ const FlightCard = ({ data }) => {
         <div className="card-body d-flex flex-column">
           <div className="d-flex my-3 col-12 justify-content-center align-items-center">
             <img
-              src={data.logo ? data.logo : airlineImg}
+              src={data.icon_airlines ? data.icon_airlines : airlineImg}
               alt="Garuda Indonesia"
               className="mr-3"
+              width={"200px"}
             />
             <h1>{data.airline}</h1>
           </div>

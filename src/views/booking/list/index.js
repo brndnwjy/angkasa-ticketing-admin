@@ -145,23 +145,7 @@ const BookingList = () => {
                                 </tr>
                               ))
                             : ""}
-                          <tr>
-                            <td>001</td>
-                            <td>01A</td>
-                            <td>Alexander Purwoto</td>
-                            <td>Rp 3,100,000</td>
-                            <td>Pending</td>
-                            <td>
-                              <div class="d-flex justify-content-center">
-                                <Link
-                                  to="/booking/1"
-                                  class="btn btn-info btn-circle"
-                                >
-                                  <i class="fas fa-info-circle"></i>
-                                </Link>
-                              </div>
-                            </td>
-                          </tr>
+                          
                         </tbody>
                       </table>
                     </div>

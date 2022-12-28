@@ -65,7 +65,7 @@ const FlightDetail = () => {
 
                 {/* <!-- Card Example --> */}
                 <FlightCard data = {detail}/>
-                <p>{detail.name}</p>
+                {/* <p>{detail.name}</p> */}
               </div>
             </div>
 

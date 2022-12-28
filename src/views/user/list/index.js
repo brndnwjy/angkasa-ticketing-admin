@@ -12,6 +12,10 @@ const UserList = () => {
 
   const { user } = useSelector((state) => state.user);
 
+  useEffect(() => {
+    console.log(user)
+  }, [])
+
   const getData = async () => {
     try {
       dispatch(getUser());
@@ -138,22 +142,6 @@ const UserList = () => {
                                 </tr>
                               ))
                             : ""}
-                          <tr>
-                            <td>001</td>
-                            <td>Alexander Purwoto</td>
-                            <td>alex@mail.com</td>
-                            <td>(+62)85643430789</td>
-                            <td>
-                              <div class="d-flex justify-content-center">
-                                <Link
-                                  to="/user/1"
-                                  class="btn btn-info btn-circle"
-                                >
-                                  <i class="fas fa-info-circle"></i>
-                                </Link>
-                              </div>
-                            </td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>

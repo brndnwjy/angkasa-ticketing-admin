@@ -1,8 +1,23 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import airline from "../../../assets/airline.png";
+import {
+  approveBooking,
+  cancelBooking,
+} from "../../../redux/action/booking.action";
 
 const BookingCard = ({ data }) => {
+  const dispatch = useDispatch();
+
+  const approve = (id) => {
+    dispatch(approveBooking(id));
+  };
+
+  const cancel = (id) => {
+    dispatch(cancelBooking(id));
+  };
+
   return (
     <div className="col-12 mb-4">
       <div className="card shadow mb-4">
@@ -19,11 +34,12 @@ const BookingCard = ({ data }) => {
 
           <div className="d-flex my-3 col-12 justify-content-center align-items-center">
             <img
-              src={data.logo ? data.logo : airline}
+              src={data.logo_url ? data.logo_url : airline}
               alt="Garuda Indonesia"
               className="mr-3"
+              width={"200px"}
             />
-            <h1>{data.name}</h1>
+            {/* <h1>{data.name}</h1> */}
           </div>
 
           <div className="d-flex my-3 col-12 justify-content-center align-items-center">
@@ -129,25 +145,26 @@ const BookingCard = ({ data }) => {
           </div>
 
           <div className="col-11 p-0 m-0 mt-3 d-flex flex-row justify-content-around">
-            <Link
-              to="#"
+            <button
               className="btn btn-danger btn-icon-split col-4 d-flex justify-content-start"
+              onClick={() => cancel(data.booking_id)}
+              type="button"
             >
               <span className="icon text-white-50">
                 <i className="fas fa-trash"></i>
               </span>
               <span className="text ml-2">Cancel Booking</span>
-            </Link>
+            </button>
 
-            <Link
-              href="#"
+            <button
               class="btn btn-success btn-icon-split col-4 d-flex justify-content-start"
+              onClick={() => approve(data.booking_id)}
             >
               <span class="icon text-white-50">
                 <i class="fas fa-check"></i>
               </span>
               <span class="text ml-2">Approve Payment</span>
-            </Link>
+            </button>
           </div>
         </div>
       </div>

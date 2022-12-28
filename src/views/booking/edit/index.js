@@ -1,61 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
+import { Link, useParams } from "react-router-dom";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
-import BookingCard from "../../../components/module/bookingCard";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getBookingDetail,
-  approveBooking,
-  cancelBooking,
-} from "../../../redux/action/booking.action";
-import axios from "axios";
-import swal from "sweetalert";
 
-const BookingDetail = () => {
+import airline from "../../../assets/airline.png";
+
+const EditBooking = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const { detail: data } = useSelector((state) => state.booking);
-
-  const getDetail = (params) => {
-    dispatch(getBookingDetail(params));
-  };
-
-  const approve = (val) => {
-    dispatch(approveBooking(val, navigate));
-  };
-
-  const cancel = (val) => {
-    dispatch(cancelBooking(val, navigate));
-    // swal({
-    //   title: "Cancelation",
-    //   text: `Are you sure want to cancel this booking?`,
-    //   icon: "warning",
-    //   buttons: true,
-    //   dangerMode: true,
-    // }).then(async (confirm) => {
-    //   if (confirm) {
-    //     await axios.delete(
-    //       `${process.env.REACT_APP_API_BACKEND}/booking/${val}`
-    //     );
-
-    //     swal({
-    //       title: "Cancelled!",
-    //       text: `Booking cancelled`,
-    //       icon: "success",
-    //     });
-    //   }
-    // });
-  };
-
-  useEffect(() => {
-    getDetail(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
 
   return (
     <>
@@ -84,11 +37,11 @@ const BookingDetail = () => {
       <main id="page-top">
         <div id="wrapper">
           <Sidebar />
-          <div id="content-wrapper" className="d-flex flex-column">
+          <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
               <Navi />
 
-              <div className="container-fluid">
+              <div class="container-fluid">
                 {/* <!-- Page Heading --> */}
                 <Link to="/booking" class="btn btn-success btn-icon-split mb-4">
                   <span class="icon text-white-60">
@@ -97,49 +50,42 @@ const BookingDetail = () => {
                   <span class="text">Back</span>
                 </Link>
 
-                {/* <!-- Card Example --> */}
-                {/* <BookingCard data={detail} /> */}
                 <div className="col-12 mb-4">
                   <div className="card shadow mb-4">
                     <div className="card-header py-3">
                       <h6 className="m-0 font-weight-bold text-primary">
-                        Booking ID : {data.booking_id}
+                        Booking ID : {id}
                       </h6>
                     </div>
                     <div className="card-body d-flex flex-column align-items-center">
                       <div className="d-flex my-3 col-12 justify-content-between align-items-center">
-                        <p>User ID : {data.user_id}</p>
-                        <p>Flight ID : {data.flight_id}</p>
+                        <p>User ID : 001</p>
+                        <p>Flight ID : 001</p>
                       </div>
 
                       <div className="d-flex my-3 col-12 justify-content-center align-items-center">
                         <img
-                          src={data.logo_url ? data.logo_url : ""}
+                          src={airline}
                           alt="Garuda Indonesia"
                           className="mr-3"
-                          width={"200px"}
                         />
-                        {/* <h1>{data.name}</h1> */}
+                        <h1>Garuda Indonesia</h1>
                       </div>
 
                       <div className="d-flex my-3 col-12 justify-content-center align-items-center">
                         <div className="card-body col-6 d-flex text-center justify-content-center align-items-center">
                           <i className="fas fa-fw fa-plane-departure fa-3x mr-4" />
                           <div className="d-flex flex-column align-items-start">
-                            <h3>
-                              {data.departure_country} - {data.departure_city}
-                            </h3>
-                            <span>({data.departure_time})</span>
+                            <h3>IDN - Jakarta</h3>
+                            <span>(12:15)</span>
                           </div>
                         </div>
 
                         <div className="card-body col-6 d-flex text-center justify-content-center align-items-center">
                           <i className="fas fa-fw fa-plane-arrival fa-3x mr-4" />
                           <div className="d-flex flex-column align-items-start">
-                            <h3>
-                              {data.arrival_country} - {data.arrival_city}
-                            </h3>
-                            <span>({data.arrival_time})</span>
+                            <h3>SGP - Singapore</h3>
+                            <span>(14:25)</span>
                           </div>
                         </div>
                       </div>
@@ -152,10 +98,8 @@ const BookingDetail = () => {
                             </h6>
                           </div>
                           <div className="d-flex mt-3 mx-4 justify-content-between align-items-center">
-                            <p>
-                              {data.psg_title}. {data.psg_name}
-                            </p>
-                            <p>{data.psg_nationality}</p>
+                            <p>Mr. Alex Ferguson</p>
+                            <p>British</p>
                           </div>
                         </div>
 
@@ -166,9 +110,9 @@ const BookingDetail = () => {
                             </h6>
                           </div>
                           <div className="d-flex mt-3 mx-4 justify-content-between align-items-center">
-                            <p>{data.username}</p>
-                            <p>{data.email}</p>
-                            <p>{data.phone}</p>
+                            <p>Brandon Wijaya</p>
+                            <p>brandon@mail.com</p>
+                            <p>+62 856 7676 8593</p>
                           </div>
                         </div>
                       </div>
@@ -194,10 +138,10 @@ const BookingDetail = () => {
                               <p> &nbsp; : &nbsp;</p>
                             </div>
                             <div>
-                              <p>{data.wifi ? "Yes" : "No"}</p>
-                              <p>{data.lunch ? "Yes" : "No"}</p>
-                              <p>{data.luggage ? "Yes" : "No"}</p>
-                              <p>{data.travel_insurance ? "Yes" : "No"}</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
                             </div>
                           </div>
 
@@ -215,39 +159,13 @@ const BookingDetail = () => {
                               <p>&nbsp; : &nbsp;</p>
                             </div>
                             <div>
-                              <p>{data.terminal}</p>
-                              <p>{data.gate}</p>
-                              <p>Rp {data.price}</p>
-                              <p>
-                                {data.payment_status
-                                  ? "E-Ticket Issued"
-                                  : "Pending"}
-                              </p>
+                              <p>1</p>
+                              <p>A</p>
+                              <p>Rp 3.150.000</p>
+                              <p>Pending</p>
                             </div>
                           </div>
                         </div>
-                      </div>
-
-                      <div className="col-11 p-0 m-0 mt-3 d-flex flex-row justify-content-around">
-                        <button
-                          className="btn btn-danger btn-icon-split col-4 d-flex justify-content-start"
-                          onClick={() => cancel(data.booking_id)}
-                        >
-                          <span className="icon text-white-50">
-                            <i className="fas fa-trash"></i>
-                          </span>
-                          <span className="text ml-2">Cancel Booking</span>
-                        </button>
-
-                        <button
-                          class="btn btn-success btn-icon-split col-4 d-flex justify-content-start"
-                          onClick={() => approve(data.booking_id)}
-                        >
-                          <span class="icon text-white-50">
-                            <i class="fas fa-check"></i>
-                          </span>
-                          <span class="text ml-2">Approve Payment</span>
-                        </button>
                       </div>
                     </div>
                   </div>
@@ -263,4 +181,4 @@ const BookingDetail = () => {
   );
 };
 
-export default BookingDetail;
+export default EditBooking;

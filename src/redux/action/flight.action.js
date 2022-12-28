@@ -45,7 +45,9 @@ export const addFlight = (data, navigate) => async (dispatch) => {
       data
     );
 
+    console.log("ini")
     console.log(result.data);
+    console.log("ini")
 
     swal({
       title: "Flight Registered!",

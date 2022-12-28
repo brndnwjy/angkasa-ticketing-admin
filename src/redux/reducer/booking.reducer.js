@@ -40,18 +40,33 @@ const bookingReducer = (state = initialState, action) => {
         isLoading: false,
       };
 
-    case "DELETE_BOOKING_PENDING":
+    case "APPROVE_BOOKING_PENDING":
       return {
         ...state,
         isLoading: true,
       };
-    case "DELETE_BOOKING_SUCCESS":
+    case "APPROVE_BOOKING_SUCCESS":
       return {
         ...state,
-        booking: action.payload,
         isLoading: false,
       };
-    case "DELETE_BOOKING_ERROR":
+    case "APPROVE_BOOKING_ERROR":
+      return {
+        ...state,
+        isLoading: false,
+      };
+
+    case "CANCEL_BOOKING_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "CANCEL_BOOKING_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+      };
+    case "CANCEL_BOOKING_ERROR":
       return {
         ...state,
         isLoading: false,

@@ -124,8 +124,9 @@ const AirlineList = () => {
                                   <td>{item.airline_id}</td>
                                   <td>
                                     <img
-                                      src={`http://localhost:4000/logo/${item.logo}`}
+                                      src={item.logo_url}
                                       alt=""
+                                      width={"200px"}
                                     />
                                   </td>
                                   <td>{item.name}</td>
@@ -154,32 +155,6 @@ const AirlineList = () => {
                                 </tr>
                               ))
                             : ""}
-                          <tr>
-                            <td>001</td>
-                            <td>
-                              <img src={airlineImg} alt="" />
-                            </td>
-                            <td>Batik Air</td>
-                            <td>
-                              <div class="d-flex justify-content-between">
-                                <Link
-                                  to="/airline/1"
-                                  class="btn btn-info btn-circle"
-                                >
-                                  <i class="fas fa-info-circle"></i>
-                                </Link>
-                                <Link
-                                  to="/airline/edit/1"
-                                  class="btn btn-warning btn-circle"
-                                >
-                                  <i class="fas fa-edit"></i>
-                                </Link>
-                                <Link to="#" class="btn btn-danger btn-circle">
-                                  <i class="fas fa-trash"></i>
-                                </Link>
-                              </div>
-                            </td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>

@@ -328,7 +328,7 @@ const InsertFlight = () => {
                         <input
                           className="col-5"
                           type="number"
-                          step="10000"
+                          step="1000"
                           name="price"
                           onChange={handleInput}
                         />
