@@ -51,7 +51,6 @@ export const addFlight = (data, navigate) => async (dispatch) => {
 
     swal({
       title: "Flight Registered!",
-      text: `${result.data.message}`,
       icon: "success",
     });
 

@@ -23,12 +23,15 @@ const InsertFlight = () => {
     arrival_time: "",
     terminal: "",
     gate: "",
+    transit: "",
+    facilities: "",
     price: 0,
   });
-  const [wifi, setWifi] = useState(false);
-  const [lunch, setLunch] = useState(false);
-  const [luggage, setLuggage] = useState(false);
-  const [transit, setTransit] = useState(false);
+
+  // const [wifi, setWifi] = useState(false);
+  // const [lunch, setLunch] = useState(false);
+  // const [luggage, setLuggage] = useState(false);
+  // const [transit, setTransit] = useState(false);
 
   const handleInput = (e) => {
     setFlightForm({
@@ -37,51 +40,51 @@ const InsertFlight = () => {
     });
   };
 
-  const handleWifi = () => {
-    if (wifi) {
-      setWifi(false);
-    } else {
-      setWifi(true);
-    }
-  };
+  // const handleWifi = () => {
+  //   if (wifi) {
+  //     setWifi(false);
+  //   } else {
+  //     setWifi(true);
+  //   }
+  // };
 
-  const handleLunch = () => {
-    if (lunch) {
-      setLunch(false);
-    } else {
-      setLunch(true);
-    }
-  };
+  // const handleLunch = () => {
+  //   if (lunch) {
+  //     setLunch(false);
+  //   } else {
+  //     setLunch(true);
+  //   }
+  // };
 
-  const handleLuggage = () => {
-    if (luggage) {
-      setLuggage(false);
-    } else {
-      setLuggage(true);
-    }
-  };
+  // const handleLuggage = () => {
+  //   if (luggage) {
+  //     setLuggage(false);
+  //   } else {
+  //     setLuggage(true);
+  //   }
+  // };
 
-  const handleTransit = () => {
-    if (transit) {
-      setTransit(false);
-    } else {
-      setTransit(true);
-    }
-  };
+  // const handleTransit = () => {
+  //   if (transit) {
+  //     setTransit(false);
+  //   } else {
+  //     setTransit(true);
+  //   }
+  // };
 
   const handleInsert = (e) => {
     e.preventDefault();
 
     let data = {
       ...flightForm,
-      price : parseInt(flightForm.price),
-      wifi,
-      lunch,
-      luggage,
-      transit
+      price: parseInt(flightForm.price),
+      // wifi,
+      // lunch,
+      // luggage,
+      // transit,
     };
 
-    console.log(data)
+    console.log(data);
     dispatch(addFlight(data, navigate));
   };
 
@@ -147,15 +150,15 @@ const InsertFlight = () => {
                             aria-label="airline select"
                             onChange={handleInput}
                           >
-                            <option selected>
-                              Select Airline
-                            </option>
+                            <option selected>Select Airline</option>
                             {airline
                               ? airline.map((item) => (
-                                  <option value={item.airline_id}>{item.name}</option>
+                                  <option value={item.airline_id}>
+                                    {item.name}
+                                  </option>
                                 ))
                               : ""}
-                            <option value="1">Garuda Indonesia</option>
+                            {/* <option value="1">Garuda Indonesia</option> */}
                           </select>
                         </div>
 
@@ -224,12 +227,23 @@ const InsertFlight = () => {
 
                         <div className="col-3 d-flex align-items-center">
                           <label className="m-0 mr-2">Time</label>
-                          <input
+                          {/* <input
                             className="col-8"
                             type="time"
                             name="departure_time"
                             onChange={handleInput}
-                          />
+                          /> */}
+                          <select
+                            className="col-8"
+                            name="departure_time"
+                            onChange={handleInput}
+                          >
+                            <option selected>-- Select --</option>
+                            <option value="0">00:00 - 06:00</option>
+                            <option value="1">06:00 - 12:00</option>
+                            <option value="2">12:00 - 18:00</option>
+                            <option value="3">18:00 - 24:00</option>
+                          </select>
                         </div>
                       </section>
 
@@ -257,18 +271,29 @@ const InsertFlight = () => {
 
                         <div className="col-3 d-flex align-items-center">
                           <label className="m-0 mr-2">Time</label>
-                          <input
+                          {/* <input
                             className="col-8"
                             type="time"
                             name="arrival_time"
                             onChange={handleInput}
-                          />
+                          /> */}
+                          <select
+                            className="col-8"
+                            name="arrival_time"
+                            onChange={handleInput}
+                          >
+                            <option selected>-- Select --</option>
+                            <option value="0">00:00 - 06:00</option>
+                            <option value="1">06:00 - 12:00</option>
+                            <option value="2">12:00 - 18:00</option>
+                            <option value="3">18:00 - 24:00</option>
+                          </select>
                         </div>
                       </section>
 
                       <hr className="col-12 px-0 mx-0" />
 
-                      <section className="d-flex col-12 align-items-center">
+                      {/* <section className="d-flex col-12 align-items-center">
                         <h6 className="m-0 p-0 mr-1 col-2">Facilities</h6>
                         <div class="form-check ml-2 mr-5">
                           <input
@@ -316,6 +341,42 @@ const InsertFlight = () => {
                           <label class="form-check-label" for="transit">
                             Transit
                           </label>
+                        </div>
+                      </section>
+
+                      <hr className="col-12 px-0 mx-0" /> */}
+
+                      <section className="d-flex col-12 align-items-center">
+                        <div className="col-6 p-0">
+                          <label className="col-4 p-0 m-0 mr-2">
+                            <h6 className="p-0 m-0">Facility : </h6>
+                          </label>
+                          <select
+                            className="col-7"
+                            name="facilities"
+                            onChange={handleInput}
+                          >
+                            <option selected>-- Select --</option>
+                            <option value="0">Luggage</option>
+                            <option value="1">In-flight Meal</option>
+                            <option value="2">Wi-fi</option>
+                          </select>
+                        </div>
+
+                        <div className="col-6 p-0">
+                          <label className="col-4 p-0 m-0 mr-2">
+                            <h6 className="p-0 m-0">Transit : </h6>
+                          </label>
+                          <select
+                            className="col-7"
+                            name="transit"
+                            onChange={handleInput}
+                          >
+                            <option selected>-- Select --</option>
+                            <option value="0">Direct</option>
+                            <option value="1">Transit</option>
+                            <option value="2">Transit 2+</option>
+                          </select>
                         </div>
                       </section>
 
