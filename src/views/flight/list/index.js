@@ -3,12 +3,11 @@ import { Helmet } from "react-helmet";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getFlight, removeFlight } from "../../../redux/action/flight.action";
 
 const FlightList = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { flight } = useSelector((state) => state.flight);

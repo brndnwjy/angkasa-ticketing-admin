@@ -1,17 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
-import { useDispatch } from "react-redux";
 
 const EditFlight = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  
 
   return (
     <>

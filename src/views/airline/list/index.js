@@ -7,8 +7,6 @@ import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
 import { getAirline } from "../../../redux/action/airline.action";
 
-import airlineImg from "../../../assets/airline.png";
-
 const AirlineList = () => {
   const dispatch = useDispatch();
 

@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet";
 import Sidebar from "../../../components/module/sidebar";
 import Navi from "../../../components/module/navi";
 import Footer from "../../../components/module/footer";
-import BookingCard from "../../../components/module/bookingCard";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,8 +10,6 @@ import {
   approveBooking,
   cancelBooking,
 } from "../../../redux/action/booking.action";
-import axios from "axios";
-import swal from "sweetalert";
 
 const BookingDetail = () => {
   const { id } = useParams();
