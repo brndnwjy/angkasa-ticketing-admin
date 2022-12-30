@@ -111,6 +111,8 @@ Contributions are what make the open source community such an amazing place to b
 
 :rocket: [`Angkasa App Demo`](https://angkasa-ticketing.vercel.app)
 
+:rocket: [`Angkasa Admin Demo`](https://angkasa-admin.netlify.app)
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- Meet The Teams -->
