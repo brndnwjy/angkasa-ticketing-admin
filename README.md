@@ -3,6 +3,7 @@
 <!-- Logo -->
 
 <!-- Table of Contents -->
+
 ## Table of Contents
 
 <details>
@@ -31,11 +32,15 @@
 </details>
 
 <!-- About The Project -->
+
 ## About The Project
+
 Admin app for Angkasa
 
 ### Built With
+
 This app was built with some technologies below:
+
 - [JavaScript](https://www.javascript.com/)
 - [Node.js](https://nodejs.org/en/)
 - [React.js](https://reactjs.org/)
@@ -46,30 +51,37 @@ This app was built with some technologies below:
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- Getting Started -->
+
 ## Getting Started
 
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
 
-* [Node.js](https://nodejs.org/en/download/)
-* [React.js](https://reactjs.org/docs/create-a-new-react-app.html)
-* [Socket.io](https://socket.io/docs/v4/client-api/)
+- [Node.js](https://nodejs.org/en/download/)
+- [React.js](https://reactjs.org/docs/create-a-new-react-app.html)
+- [Socket.io](https://socket.io/docs/v4/client-api/)
 
 ### Installation
 
 - Clone the repository
+
 ```
 git clone https://github.com/brndnwjy/angkasa-ticketing-admin
 ```
+
 - Go to repository folder
+
 ```
 cd angkasa-ticketing-admin
 ```
+
 - Install Module
+
 ```
 npm install / npm i
 ```
+
 - Connect with database
 - <a href="#setup-env-example">Setup .env</a>
 - Type ` npm run dev` To Start Development
@@ -89,6 +101,7 @@ BACKEND_APP_API_URL = [API_URL]
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- Contributing -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -103,8 +116,59 @@ Contributions are what make the open source community such an amazing place to b
 
 <!-- Screenshoots -->
 
+##Screenshoots
+
+<table>
+  <tr>
+    <td><image src="./documentation/login.png" alt="Login" width=100% ></td>
+    <td><image src="./documentation/home.png" alt="Homepage" width=100%/></td>
+  </tr>
+  <tr>
+    <td align="center">Login</td>
+    <td align="center">Homepage</td>
+  </tr>
+
+  <tr>
+    <td><image src="./documentation/airline-list.png" alt="Airline List" width=100% ></td>
+    <td><image src="./documentation/flight-list.png" alt="Flight List" width=100%/></td>
+  </tr>
+  <tr>
+    <td align="center">Airline List</td>
+    <td align="center">Flight List</td>
+  </tr>
+
+  <tr>
+    <td><image src="./documentation/flight-insert.jpeg" alt="Flight Insert" width=100% ></td>
+    <td><image src="./documentation/flight-detail.png" alt="Flight Detail" width=100%/></td>
+  </tr>
+  <tr>
+    <td align="center">Flight - Insert</td>
+    <td align="center">Flight - Detail</td>
+  </tr>
+
+  <tr>
+    <td><image src="./documentation/booking-list.png" alt="Booking List" width=100% ></td>
+    <td><image src="./documentation/booking-detail.png" alt="Booking Detail" width=100%/></td>
+  </tr>
+  <tr>
+    <td align="center">Booking - List</td>
+    <td align="center">Booking - Detail</td>
+  </tr>
+
+  <tr>
+    <td><image src="./documentation/user-list.png" alt="User List" width=100% ></td>
+    <td><image src="./documentation/user-detail.png" alt="User Detail" width=100%/></td>
+  </tr>
+  <tr>
+    <td align="center">User - List</td>
+    <td align="center">User - Detail</td>
+  </tr>
+</table>
+
 <!-- Related Projects -->
+
 ## Related Project
+
 :rocket: [`Angkasa (Frontend)`](https://github.com/brndnwjy/angkasa-ticketing-app)
 
 :rocket: [`Angkasa (Backend)`](https://github.com/brndnwjy/angkasa-ticketing-api)
@@ -116,6 +180,7 @@ Contributions are what make the open source community such an amazing place to b
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- Meet The Teams -->
+
 ## Meet The Teams
 
 <center>
